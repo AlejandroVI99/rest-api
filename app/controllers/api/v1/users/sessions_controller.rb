@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Api::V1::Users::SessionsController < Devise::SessionsController
   include RackSessionsFix
   respond_to :json
@@ -8,7 +6,7 @@ class Api::V1::Users::SessionsController < Devise::SessionsController
 
   def respond_with(current_user, _opts = {})
     render json: {
-      status: { 
+      status: {
         code: 200, message: 'Logged in successfully.',
         data: {
           user: {
@@ -29,7 +27,10 @@ class Api::V1::Users::SessionsController < Devise::SessionsController
       ).first
       current_user = User.find(jwt_payload['sub'])
     end
-    
+    respond_message(current_user)
+  end
+
+  def respond_message(current_user)
     if current_user
       render json: {
         status: 200,

@@ -1,12 +1,14 @@
-# frozen_string_literal: true
-
 class Api::V1::Users::RegistrationsController < Devise::RegistrationsController
   include RackSessionsFix
   respond_to :json
-  def respond_with(current_user, _opts = {})
+  
+  def respond_with(current_user,_opts = {})
     if resource.persisted?
       render json: {
-        status: {code: 200, message: 'Signed up successfully.'},
+        status: {
+          code: 200,
+          message: 'Signed up successfully.'
+        },
         data: {
           user: {
             id: current_user.id,
