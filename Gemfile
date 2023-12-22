@@ -18,6 +18,7 @@ gem 'devise-jwt'
 
 gem 'rubocop', require: false
 gem 'pry'
+gem 'rack-cors'
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
@@ -49,3 +50,5 @@ group :development do
   # gem "spring"
 end
 
+
+gem "dockerfile-rails", ">= 1.5", :group => :development
